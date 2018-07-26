@@ -1,2 +1,4 @@
 # job4j
-123
+Dmitrii Mitin
+http://job4j.ru/
+I want to invent a bicycle
