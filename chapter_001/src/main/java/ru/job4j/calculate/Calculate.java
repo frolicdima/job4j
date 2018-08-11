@@ -1,7 +1,7 @@
 package ru.job4j.calculate;
 
 /**
- * Calculate.
+ * Calculate.1
  *
  * @author Dmitrii Mitin (mailto:ppdnk@mail.ru)
  */
