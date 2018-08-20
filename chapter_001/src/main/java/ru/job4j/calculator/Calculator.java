@@ -8,47 +8,47 @@ package ru.job4j.calculator;
 public class Calculator {
     private double result;
 
+    /**
+     * add.
+     * @param first - first arg,
+     * @param second - second arg.
+     */
     public void add(double first, double second) {
-        /**
-         * add.
-         * @param first - first arg,
-         * @param second - second arg.
-         */
         this.result = first + second;
     }
 
+    /**
+     * subtraction.
+     * @param first - first arg,
+     * @param second - second arg.
+     */
     public void substraction(double first, double second) {
-        /**
-         * subtraction.
-         * @param first - first arg,
-         * @param second - second arg.
-         */
         this.result = first - second;
     }
 
+    /**
+     * multiplication.
+     * @param first - first arg,
+     * @param second - second arg.
+     */
     public void multiplication(double first, double second) {
-        /**
-         * multiplication.
-         * @param first - first arg,
-         * @param second - second arg.
-         */
         this.result = first * second;
     }
 
+    /**
+     * division.
+     * @param first - first arg,
+     * @param second - second arg.
+     */
     public void division(double first, double second) {
-        /**
-         * division.
-         * @param first - first arg,
-         * @param second - second arg.
-         */
         this.result = first / second;
     }
 
+    /**
+     * getResult.
+     * @return result.
+     */
     public double getResult() {
-        /**
-         * getResult.
-         * @return result.
-         */
         return this.result;
     }
 }
