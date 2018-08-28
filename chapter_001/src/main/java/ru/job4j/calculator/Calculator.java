@@ -1,11 +1,14 @@
 package ru.job4j.calculator;
 
+import java.math.BigDecimal;
+
 /**
  * Calculator
  *
  * @author Dmitrii Mitin (mailto:ppdnk@mail.ru)
  */
 public class Calculator {
+    /**result**/
     private double result;
 
     /**
@@ -18,30 +21,33 @@ public class Calculator {
     }
 
     /**
-     * subtraction.
+     * subtract.
      * @param first - first arg,
      * @param second - second arg.
      */
-    public void substraction(double first, double second) {
+    public void substract(double first, double second) {
         this.result = first - second;
     }
 
     /**
-     * multiplication.
+     * multiplу.
      * @param first - first arg,
      * @param second - second arg.
      */
-    public void multiplication(double first, double second) {
+    public void multiply(double first, double second) {
         this.result = first * second;
     }
 
     /**
-     * division.
+     * divide.
      * @param first - first arg,
      * @param second - second arg.
      */
-    public void division(double first, double second) {
-        this.result = first / second;
+    public void divide(double first, double second) {
+        BigDecimal bdFirst = new BigDecimal(first);
+        BigDecimal bdSecond = new BigDecimal(second);
+        BigDecimal bdResult = new bdFirst.multiply(bdSecond);
+        this.result = bdResult.doubleValue();
     }
 
     /**

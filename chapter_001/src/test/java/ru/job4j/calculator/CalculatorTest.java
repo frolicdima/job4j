@@ -16,29 +16,38 @@ public class CalculatorTest {
     }
 
     @Test
-    public void whenSubstractionTwoMinusOneThenOne() {
+    public void whenSubstractTwoMinusOneThenOne() {
         Calculator calc = new Calculator();
-        calc.substraction(2D, 1D);
+        calc.substract(2D, 1D);
         double result = calc.getResult();
         double expected = 1D;
         assertThat(result, is(expected));
     }
 
     @Test
-    public void whenMultiplicationTwoByFourThenEight() {
+    public void whenMultiplyTwoByFourThenEight() {
         Calculator calc = new Calculator();
-        calc.multiplication(2D, 4D);
+        calc.multiply(2D, 4D);
         double result = calc.getResult();
         double expected = 8D;
         assertThat(result, is(expected));
     }
 
     @Test
-    public void whenDivisionNineByThreeThenThree() {
+    public void whenDivideNineByThreeThenThree() {
         Calculator calc = new Calculator();
-        calc.division(9D, 3D);
+        calc.divide(9D, 3D);
         double result = calc.getResult();
         double expected = 3D;
+        assertThat(result, is(expected));
+    }
+
+    @Test
+    public void whenMultiplicationDoubles() {
+        Calculator calc = new Calculator();
+        calc.multiply(1.1, 2.2);
+        double result = calc.getResult();
+        double expected = 2.42;
         assertThat(result, is(expected));
     }
 }
