@@ -2,6 +2,8 @@ package ru.job4j.calculator;
 
 import java.math.BigDecimal;
 
+import static jdk.nashorn.internal.objects.NativeMath.round;
+
 /**
  * Calculator
  *
@@ -35,7 +37,10 @@ public class Calculator {
      * @param second - second arg.
      */
     public void multiply(double first, double second) {
-        this.result = first * second;
+        BigDecimal bdFirst = new BigDecimal(Double.toString(first));
+        BigDecimal bdSecond = new BigDecimal(Double.toString(second));
+        BigDecimal bdResult = bdFirst.multiply(bdSecond);
+        this.result = bdResult.doubleValue();
     }
 
     /**
@@ -44,10 +49,7 @@ public class Calculator {
      * @param second - second arg.
      */
     public void divide(double first, double second) {
-        BigDecimal bdFirst = new BigDecimal(first);
-        BigDecimal bdSecond = new BigDecimal(second);
-        BigDecimal bdResult = new bdFirst.multiply(bdSecond);
-        this.result = bdResult.doubleValue();
+        this.result = first / second;
     }
 
     /**
