@@ -23,4 +23,18 @@ public class MaxTest {
         int result = maxim.max(100, 2);
         assertThat(result, is(100));
     }
+
+    @Test
+    public void whenFirstGreaterSecondAndThird() {
+        Max maxim = new Max();
+        int result = maxim.max(100, 2, 4);
+        assertThat(result, is(100));
+    }
+
+    @Test
+    public void whenSecondGreaterFirstAndThird() {
+        Max maxim = new Max();
+        int result = maxim.max(10, 20, 4);
+        assertThat(result, is(20));
+    }
 }
