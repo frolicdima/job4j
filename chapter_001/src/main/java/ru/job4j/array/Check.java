@@ -12,11 +12,10 @@ public class Check {
      * @return Возвращает true, если массив состоит из одинаковых элементов, в противном случае false.
      */
     public boolean mono(boolean[] data) {
-        boolean result = false;
-        for (int i = 0; i < data.length - 1; i++) {
-            if (data[i] == data[i + 1]) {
-                result = true;
-            } else {
+        boolean result = true;
+        for (int i = 0; i < data.length; i++) {
+            if (data[0] != data[i]) {
+                result = false;
                 break;
             }
 
