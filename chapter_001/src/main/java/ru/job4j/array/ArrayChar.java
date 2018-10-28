@@ -21,9 +21,7 @@ public class ArrayChar {
         boolean result = true;
         char[] value = prefix.toCharArray();
         for (int i = 0; i < prefix.length(); i++) {
-            if (value[i] == data[i]) {
-                continue;
-            } else {
+            if (value[i] != data[i]) {
                 result = false;
                 break;
             }
