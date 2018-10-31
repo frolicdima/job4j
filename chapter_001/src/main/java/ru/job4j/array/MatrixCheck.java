@@ -14,21 +14,13 @@ public class MatrixCheck {
      */
     public boolean mono(boolean[][] data) {
         boolean result = true;
-        boolean diagOne = data[0][0]; //стартовое значение главное диагонали;
-        boolean diagTwo = data[0][data.length - 1]; //стартовое значение побочной диагонали;
         for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data.length; j++) {
-                if (i == j) {
-                    if (data[i][j] != diagOne) {
-                        result = false;
-                        break;
-                    }
-                } else if (i == j + data.length - 1) {
-                    if (data[i][data.length - 1 - i] != diagTwo) {
-                        result = false;
-                        break;
-                    }
-                }
+            if (data[0][0] != data[i][i]) {
+                result = false;
+                break;
+            } else if (data[0][data.length - 1] != data[i][data.length - 1 - i]) {
+                result = false;
+                break;
             }
         }
         return result;
