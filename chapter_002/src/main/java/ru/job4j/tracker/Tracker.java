@@ -40,6 +40,16 @@ public class Tracker {
         for (Item item : items) {
             if (item != null && item.getId().equals(id)) {
                 item = update;
+                /*String tempId = update.getId();
+                item.setId(tempId);
+                String tempName = update.getName();
+                item.setName(tempName);
+                String tempDesc = update.getDesc();
+                item.setDesc(tempDesc);
+                long tempCreated = update.getCreated();
+                item.setCreated(tempCreated);
+                String[] tempComments = update.getComments();
+                item.setComments(tempComments);*/
                 break;
             }
         }

@@ -23,35 +23,35 @@ public class Item {
         return this.id;
     }
 
-    private void setName(String name) {
+    public void setName(String name) {
         name = this.name;
     }
 
-    private String getName() {
+    public String getName() {
         return this.name;
     }
 
-    private void setDesc(String desc) {
+    public void setDesc(String desc) {
         this.desc = desc;
     }
 
-    private String getDesc() {
+    public String getDesc() {
         return this.desc;
     }
 
-    private void setCreated(long created) {
+    public void setCreated(long created) {
         this.created = created;
     }
 
-    private long getCreated() {
+    public long getCreated() {
         return this.created;
     }
 
-    private  void setComments(String[] comments) {
+    public  void setComments(String[] comments) {
         this.comments = comments;
     }
 
-    private String[] getComments() {
+    public String[] getComments() {
         return this.comments;
     }
 }
