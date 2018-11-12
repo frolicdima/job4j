@@ -16,7 +16,7 @@ public class Item {
     }
 
     public void setId(String id) {
-        id = this.id;
+       this.id = id;
     }
 
     public String getId() {
@@ -24,7 +24,7 @@ public class Item {
     }
 
     public void setName(String name) {
-        name = this.name;
+        this.name = name;
     }
 
     public String getName() {
