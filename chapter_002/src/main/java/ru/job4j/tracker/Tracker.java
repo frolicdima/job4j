@@ -56,4 +56,14 @@ public class Tracker {
 
 
     }
+
+    public void deleteById(String id) {
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null && items[i].getId().equals(id)) {
+                System.arraycopy(items, i + 1, items, i, position - i);
+                break;
+            }
+        }
+        position--;
+    }
 }

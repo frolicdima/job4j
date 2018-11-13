@@ -53,4 +53,18 @@ public class TrackerTest {
         assertThat(tracker.findById(item1.getId()), is(item1));
     }
 
+    @Test
+    public void whenDeleteByIdFirstThenTrackerHasNoDeletedItem() {
+        Tracker tracker = new Tracker();
+        Item item0 = new Item("id0", "name0", "desc0", 0L, new String[]{"testComment0"});
+        Item item1 = new Item("id1", "name1", "desc1", 1L, new String[]{"testComment1"});
+        Item item2 = new Item("id2", "name2", "desc2", 2L, new String[]{"testComment2"});
+        tracker.add(item0);
+        tracker.add(item1);
+        tracker.add(item2);
+        Item[] expected = new Item[]{item0, item2};
+        tracker.deleteById(item1.getId());
+        assertThat(tracker, is(expected));
+    }
+
 }
