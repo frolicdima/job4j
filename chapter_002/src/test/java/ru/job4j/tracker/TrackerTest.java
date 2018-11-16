@@ -49,8 +49,8 @@ public class TrackerTest {
         tracker.add(item1);
         tracker.add(item2);
         Item updated = new Item("upd", "upd", "upd", 100500L, new String[]{"upd"});
-        tracker.replaceById(item0.getId(), updated);
-        assertThat(tracker.findById(item1.getId()), is(item1));
+        tracker.replaceById(item1.getId(), updated);
+        assertThat(tracker.findById(item1.getId()).getName(), is("upd"));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class TrackerTest {
         tracker.add(item2);
         Item[] expected = new Item[]{item0, item2};
         tracker.deleteById(item1.getId());
-        assertThat(tracker, is(expected));
+        assertThat(tracker.getAll(), is(expected));
     }
 
 }
