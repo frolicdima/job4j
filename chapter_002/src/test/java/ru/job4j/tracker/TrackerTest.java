@@ -67,4 +67,16 @@ public class TrackerTest {
         assertThat(tracker.getAll(), is(expected));
     }
 
+    @Test
+    public void whenFindByNameAllItemsThenReturnRelevantItems() {
+        Tracker tracker = new Tracker();
+        Item item0 = new Item("id0", "name0", "desc0", 0L, new String[]{"testComment0"});
+        Item item1 = new Item("id1", "name1", "desc1", 1L, new String[]{"testComment1"});
+        Item item2 = new Item("id2", "name2", "desc2", 2L, new String[]{"testComment2"});
+        tracker.add(item0);
+        tracker.add(item1);
+        tracker.add(item2);
+        assertThat(tracker.findByName("name"), is(tracker.getAll()));
+    }
+
 }
