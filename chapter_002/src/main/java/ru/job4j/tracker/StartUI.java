@@ -21,11 +21,11 @@ public class StartUI {
 
     private void createItem() {
         System.out.println("------------ Добавление новой заявки --------------");
-        String id;
+        String id = null;
         String name = this.input.ask("Введите имя заявки :");
         String desc = this.input.ask("Введите описание заявки :");
         Long created = null;
-        String[] comments;
+        String[] comments = new String[2];
         Item item = new Item(id, name, desc, created, comments);
         this.tracker.add(item);
         System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
