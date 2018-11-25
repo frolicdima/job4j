@@ -21,14 +21,50 @@ public class StartUI {
 
     private void createItem() {
         System.out.println("------------ Добавление новой заявки --------------");
-        String id = null;
         String name = this.input.ask("Введите имя заявки :");
         String desc = this.input.ask("Введите описание заявки :");
-        Long created = null;
-        String[] comments = new String[2];
-        Item item = new Item(id, name, desc, created, comments);
+        Item item = new Item(name, desc);
         this.tracker.add(item);
         System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
+    }
+
+    private void showItems() {
+        System.out.println("------------ Все заявки --------------");
+        for (Item item : tracker.getAll()) {
+            System.out.println(item.getId() + " - " + item.getName() + " - " + item.getDesc());
+        }
+        System.out.println();
+    }
+
+    private void editItem() {
+        String oldId = this.input.ask("Введите ID заявки, которую нужно обновить :");
+        String name = this.input.ask("Введите имя заявки :");
+        String desc = this.input.ask("Введите описание заявки :");
+        Item updated = new Item(name, desc);
+        this.tracker.replaceById(oldId, updated);
+    }
+
+    private void deleteItem() {
+        String oldId = this.input.ask("Введите ID заявки, которую нужно удалить :");
+        this.tracker.deleteById(oldId);
+    }
+
+    private void findItemById() {
+        String oldId = this.input.ask("Введите ID заявки, которую нужно найти :");
+        Item result = this.tracker.findById(oldId);
+        System.out.println("Найдена заявка:");
+        System.out.println(result.getId() + " - " + result.getName() + " - " + result.getDesc());
+    }
+
+    private void findItemByName() {
+        String search = this.input.ask("Введите ID заявки, которую нужно найти :");
+        /*for (Item item : tracker.findByName(search)) {
+            System.out.println(item.getId() + " - " + item.getName() + " - " + item.getDesc());
+        }*/
+        Item[] result = tracker.findByName(search);
+        for (int i = 0; i < result.length; i++) {
+            System.out.println(result[i].getId() + " - " + result[i].getName() + " - " + result[i].getDesc());
+        }
     }
 
     private void showMenu() {
@@ -49,6 +85,18 @@ public class StartUI {
             String answer = this.input.ask("Введите пункт меню : ");
             if (ADD.equals(answer)) {
                 this.createItem();
+            } else if (SHOWALLITEMS.equals(answer)) {
+                this.showItems();
+            } else if (EDITITEM.equals(answer)) {
+                this.editItem();
+            } else if (DELETEITEM.equals(answer)) {
+                this.deleteItem();
+            } else if (FINDITEMBYID.equals(answer)) {
+                this.findItemById();
+            } else if (FINDITEMBYNAME.equals(answer)) {
+                this.findItemByName();
+            } else if (EXIT.equals(answer)) {
+                exit = true;
             }
         }
     }

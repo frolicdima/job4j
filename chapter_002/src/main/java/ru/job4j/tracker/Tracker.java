@@ -36,7 +36,6 @@ public class Tracker {
     public void replaceById(String id, Item update) {
         for (Item item : items) {
             if (item != null && item.getId().equals(id)) {
-                //item = update;
                 item.setId(update.getId());
                 item.setName(update.getName());
                 item.setDesc(update.getDesc());
