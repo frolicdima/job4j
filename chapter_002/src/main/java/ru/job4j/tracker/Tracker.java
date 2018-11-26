@@ -20,9 +20,9 @@ public class Tracker {
 
     public Item findById(String id) {
         Item result = null;
-        for (Item item: items) {
-            if (item != null && item.getId().equals(id)) {
-                result = item;
+        for (int i = 0; i < position; i++) {
+            if (items[i] != null && items[i].getId().equals(id)) {
+                result = items[i];
                 break;
             }
         }
@@ -34,13 +34,10 @@ public class Tracker {
     }
 
     public void replaceById(String id, Item update) {
-        for (Item item : items) {
-            if (item != null && item.getId().equals(id)) {
-                item.setId(update.getId());
-                item.setName(update.getName());
-                item.setDesc(update.getDesc());
-                item.setCreated(update.getCreated());
-                item.setComments(update.getComments());
+        for (int i = 0; i < position; i++) {
+            if (items[i] != null && items[i].getId().equals(id)) {
+                update.setId(id);
+                items[i] = update;
                 break;
             }
         }
@@ -60,13 +57,14 @@ public class Tracker {
 
     public Item[] findByName(String name) {
         int j = 0;
-        Item[] result = null;
+        Item[] result = new Item[position];
         for (int i = 0; i < items.length; i++) {
             if (items[i] != null && items[i].getName().contains(name)) {
-                System.arraycopy(items, i, result, j, 1);
+                result[j] = items[i];
                 j++;
             }
         }
+        System.arraycopy(result, 0, result, 0, j);
         return result;
     }
 }
