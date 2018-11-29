@@ -65,7 +65,7 @@ public class Tracker {
             }
         }
         //System.arraycopy(result, 0, result, 0, j);
-        Arrays.copyOf(result, j);
-        return result;
+        return Arrays.copyOf(result, j);
+        //return result;
     }
 }
