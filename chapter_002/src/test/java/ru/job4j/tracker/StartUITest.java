@@ -1,10 +1,33 @@
 package ru.job4j.tracker;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class StartUITest {
+    // получаем ссылку на стандартный вывод в консоль.
+    PrintStream stdout = System.out;
+    // Создаем буфер для хранения вывода.
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+    @Before
+    public void loadOutput() {
+        System.out.println("execute before method");
+        System.setOut(new PrintStream(this.out));
+    }
+
+    @After
+    public void backOutput() {
+        System.setOut(this.stdout);
+        System.out.println("execute after method");
+    }
+
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
@@ -38,5 +61,28 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         // проверяем, что элемент массива в трекере с position = 1, это элемент, который ранее был с position = 2.
         assertThat(tracker.getAll()[1].getName(), is("test name3"));
+    }
+
+    @Test
+    public void whenGetAllTwoItemsThenPrintedTwoItems() {
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("test name", "desc"));
+        Item item2 = tracker.add(new Item("test name2", "desc2"));
+        Input input = new StubInput(new String[]{"1"});
+        new StartUI(input, tracker).init();
+        assertThat(
+                new String(out.toByteArray()),
+                is(
+                        new StringBuilder()
+                                .append(item.getId())
+                                .append(item.getName())
+                                .append(item.getDesc())
+                                .append(item2.getId())
+                                .append(item2.getName())
+                                .append(item2.getDesc())
+                                .append(System.lineSeparator())
+                                .toString()
+                )
+        );
     }
 }
