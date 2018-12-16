@@ -68,18 +68,26 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
         Item item2 = tracker.add(new Item("test name2", "desc2"));
-        Input input = new StubInput(new String[]{"1"});
+        Input input = new StubInput(new String[]{"1", "6"});
         new StartUI(input, tracker).init();
         assertThat(
                 new String(out.toByteArray()),
                 is(
                         new StringBuilder()
+                                .append("Меню\\r\\n0. AddItem\\r\\n1. GetAll\\r\\n2. ReplaceById\\r\\n3. DeleteById\\r\\n4. FindById\\r\\n5. FindByName\\r\\n6. Exit\\r\\n------------ Все заявки --------------\\r\\n")
                                 .append(item.getId())
+                                .append(" - ")
                                 .append(item.getName())
+                                .append(" - ")
                                 .append(item.getDesc())
+                                .append("\\r\\n")
                                 .append(item2.getId())
+                                .append(" - ")
                                 .append(item2.getName())
+                                .append(" - ")
                                 .append(item2.getDesc())
+                                .append("\\r\\n")
+                                .append("\\r\\nМеню\\r\\n0. AddItem\\r\\n1. GetAll\\r\\n2. ReplaceById\\r\\n3. DeleteById\\r\\n4. FindById\\r\\n5. FindByName\\r\\n6. Exit")
                                 .append(System.lineSeparator())
                                 .toString()
                 )
