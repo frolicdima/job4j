@@ -28,6 +28,8 @@ public class StartUITest {
         System.out.println("execute after method");
     }
 
+    String menu = "Меню" + System.lineSeparator() + "0. AddItem" + System.lineSeparator() + "1. GetAll" + System.lineSeparator() + "2. ReplaceById" + System.lineSeparator() + "3. DeleteById" + System.lineSeparator() + "4. FindById" + System.lineSeparator() + "5. FindByName" + System.lineSeparator() + "6. Exit" + System.lineSeparator();
+
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
@@ -74,21 +76,70 @@ public class StartUITest {
                 new String(out.toByteArray()),
                 is(
                         new StringBuilder()
-                                .append("Меню" + System.lineSeparator() + "0. AddItem" + System.lineSeparator() + "1. GetAll" + System.lineSeparator() + "2. ReplaceById" + System.lineSeparator() + "3. DeleteById" + System.lineSeparator() + "4. FindById" + System.lineSeparator() + "5. FindByName" + System.lineSeparator() + "6. Exit" + System.lineSeparator() + "------------ Все заявки --------------" + System.lineSeparator() + "")
+                                .append(menu + "------------ Все заявки --------------" + System.lineSeparator())
                                 .append(item.getId())
                                 .append(" - ")
                                 .append(item.getName())
                                 .append(" - ")
                                 .append(item.getDesc())
-                                .append("" + System.lineSeparator() + "")
+                                .append(System.lineSeparator())
                                 .append(item2.getId())
                                 .append(" - ")
                                 .append(item2.getName())
                                 .append(" - ")
                                 .append(item2.getDesc())
-                                .append("" + System.lineSeparator() + "")
-                                .append("" + System.lineSeparator() + "Меню" + System.lineSeparator() + "0. AddItem" + System.lineSeparator() + "1. GetAll" + System.lineSeparator() + "2. ReplaceById" + System.lineSeparator() + "3. DeleteById" + System.lineSeparator() + "4. FindById" + System.lineSeparator() + "5. FindByName" + System.lineSeparator() + "6. Exit")
                                 .append(System.lineSeparator())
+                                .append(System.lineSeparator() + menu)
+                                .toString()
+                )
+        );
+    }
+
+    @Test
+    public void whenSearchForItem2ByIdThenPrintedItem2() {
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("test name", "desc"));
+        Item item2 = tracker.add(new Item("test name2", "desc2"));
+        Input input = new StubInput(new String[]{"4", item2.getId(), "6"});
+        new StartUI(input, tracker).init();
+        String menu = "Меню" + System.lineSeparator() + "0. AddItem" + System.lineSeparator() + "1. GetAll" + System.lineSeparator() + "2. ReplaceById" + System.lineSeparator() + "3. DeleteById" + System.lineSeparator() + "4. FindById" + System.lineSeparator() + "5. FindByName" + System.lineSeparator() + "6. Exit" + System.lineSeparator();
+        assertThat(
+                new String(out.toByteArray()),
+                is(
+                        new StringBuilder()
+                                .append(menu + "Найдена заявка:" + System.lineSeparator())
+                                .append(item2.getId())
+                                .append(" - ")
+                                .append(item2.getName())
+                                .append(" - ")
+                                .append(item2.getDesc())
+                                .append(System.lineSeparator())
+                                .append(menu)
+                                .toString()
+                )
+        );
+    }
+
+    @Test
+    public void whenSearchForItem2ByNameThenPrintedItem2() {
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("test name", "desc"));
+        Item item2 = tracker.add(new Item("test name2", "desc2"));
+        Input input = new StubInput(new String[]{"5", "name2", "6"});
+        new StartUI(input, tracker).init();
+        String menu = "Меню" + System.lineSeparator() + "0. AddItem" + System.lineSeparator() + "1. GetAll" + System.lineSeparator() + "2. ReplaceById" + System.lineSeparator() + "3. DeleteById" + System.lineSeparator() + "4. FindById" + System.lineSeparator() + "5. FindByName" + System.lineSeparator() + "6. Exit" + System.lineSeparator();
+        assertThat(
+                new String(out.toByteArray()),
+                is(
+                        new StringBuilder()
+                                .append(menu)
+                                .append(item2.getId())
+                                .append(" - ")
+                                .append(item2.getName())
+                                .append(" - ")
+                                .append(item2.getDesc())
+                                .append(System.lineSeparator())
+                                .append(menu)
                                 .toString()
                 )
         );
