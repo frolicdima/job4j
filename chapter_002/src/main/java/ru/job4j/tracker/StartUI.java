@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.*;
+
 public class StartUI {
     /**
      * Константа меню для добавления новой заявки
@@ -31,14 +33,14 @@ public class StartUI {
     /**
      * Метод реализует добавление новой заявки в хранилище.
      */
-    private void createItem() {
+    /*private void createItem() {
         System.out.println("------------ Добавление новой заявки --------------");
         String name = this.input.ask("Введите имя заявки :");
         String desc = this.input.ask("Введите описание заявки :");
         Item item = new Item(name, desc);
         this.tracker.add(item);
         System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
-    }
+    }*/
     /**
      * Метод реализует вывод всех существующих заявок
      */
@@ -102,27 +104,18 @@ public class StartUI {
      * Основой цикл программы
      */
     public void init() {
-        boolean exit = false;
-        while (!exit) {
-            this.showMenu();
-            String answer = this.input.ask("Введите пункт меню : ");
-            if (ADD.equals(answer)) {
-                this.createItem();
-            } else if (SHOWALLITEMS.equals(answer)) {
-                this.showItems();
-            } else if (EDITITEM.equals(answer)) {
-                this.editItem();
-            } else if (DELETEITEM.equals(answer)) {
-                this.deleteItem();
-            } else if (FINDITEMBYID.equals(answer)) {
-                this.findItemById();
-            } else if (FINDITEMBYNAME.equals(answer)) {
-                this.findItemByName();
-            } else if (EXIT.equals(answer)) {
-                exit = true;
-            }
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        List<Integer> range = new ArrayList<>();
+        menu.fillActions();
+        for (int i = 0; i < menu.getActionsLentgh(); i++) {
+            range.add(i);
         }
+        do {
+            menu.show();
+            menu.select(input.ask("select:", range));
+        } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
+
     /**
      * Запускт программы
      * @param args
