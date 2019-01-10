@@ -39,6 +39,14 @@ public class MenuTracker {
     public static final String ADD = "0";
 
     public class AddItem implements UserAction {
+
+        private int key;
+        private String info;
+
+        public AddItem(int key, String info) {
+            this.key = key;
+            this.info = info;
+        }
         @Override
         public int key() {
             return Integer.valueOf(ADD);
