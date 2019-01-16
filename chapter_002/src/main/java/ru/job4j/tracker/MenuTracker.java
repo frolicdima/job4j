@@ -139,6 +139,7 @@ public class MenuTracker {
             String desc = input.ask("Введите описание заявки :");
             Item updated = new Item(name, desc);
             tracker.replaceById(oldId, updated);
+            System.out.println((done == false)? "Элемент с указанным ID не найден" : "Элемент с указанным ID отредактирован");
         }
 
         @Override

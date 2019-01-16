@@ -59,13 +59,16 @@ public class Tracker {
      * @param id  - id заявки, которую нужно заменить
      * @param update - новые данные заявки
      */
-    public void replaceById(String id, Item update) {
+    public boolean replaceById(String id, Item update) {
+        public boolean done = false;
         for (int i = 0; i < position; i++) {
             if (items[i] != null && items[i].getId().equals(id)) {
                 update.setId(id);
                 items[i] = update;
+                done = true;
                 break;
             }
+            return done;
         }
 
 
