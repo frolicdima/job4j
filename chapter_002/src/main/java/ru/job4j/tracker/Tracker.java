@@ -60,7 +60,7 @@ public class Tracker {
      * @param update - новые данные заявки
      */
     public boolean replaceById(String id, Item update) {
-        public boolean done = false;
+        boolean done = false;
         for (int i = 0; i < position; i++) {
             if (items[i] != null && items[i].getId().equals(id)) {
                 update.setId(id);
@@ -68,8 +68,8 @@ public class Tracker {
                 done = true;
                 break;
             }
-            return done;
         }
+        return done;
 
 
     }
@@ -77,14 +77,17 @@ public class Tracker {
      * Метод реализует удаление существующей заявки по ее ID
      * @param id  - id заявки, которую нужно удалить
      */
-    public void deleteById(String id) {
+    public boolean deleteById(String id) {
+        boolean done = false;
         for (int i = 0; i < items.length; i++) {
             if (items[i] != null && items[i].getId().equals(id)) {
                 System.arraycopy(items, i + 1, items, i, position - i);
                 position--;
+                done = true;
                 break;
             }
         }
+        return done;
     }
     /**
      * Метод реализует поиск и вывод на экран существующих заявок по имени (name)
