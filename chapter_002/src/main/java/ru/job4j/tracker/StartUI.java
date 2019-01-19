@@ -32,10 +32,10 @@ public class StartUI {
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        menu.fillActions(this);//почему в скобках "this"?
-        while(work) {
+        menu.fillActions(this); //почему в скобках "this"?
+        while (work) {
             menu.show();
-
+            menu.select(Integer.valueOf(this.input.ask("select:")));
         }
     }
 

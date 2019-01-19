@@ -48,7 +48,7 @@ public class MenuTracker {
     public static final String EXIT = "6";
 
     /**
-     * Метод реализует добавление новой заявки в хранилище.
+     * Класс реализует добавление новой заявки в хранилище.
      */
     public class AddItem implements UserAction {
 
@@ -82,7 +82,7 @@ public class MenuTracker {
     }
 
     /**
-     * Метод реализует вывод всех существующих заявок
+     * Класс реализует вывод всех существующих заявок
      */
     public class ShowItems implements UserAction {
 
@@ -115,7 +115,7 @@ public class MenuTracker {
     }
 
     /**
-     * Метод реализует редактирование существующей заявки по ее ID
+     * Класс реализует редактирование существующей заявки по ее ID
      */
     public class EditItem implements UserAction {
 
@@ -148,7 +148,7 @@ public class MenuTracker {
     }
 
     /**
-     * Метод реализует удаление существующей заявки по ее ID
+     * Класс реализует удаление существующей заявки по ее ID
      */
     public class DeleteItem implements UserAction {
 
@@ -178,7 +178,7 @@ public class MenuTracker {
     }
 
     /**
-     * Метод реализует поиск и вывод на экран существующей заявки по ее ID
+     * Класс реализует поиск и вывод на экран существующей заявки по ее ID
      */
     public class FindItemById implements UserAction {
 
@@ -210,7 +210,7 @@ public class MenuTracker {
     }
 
     /**
-     * Метод реализует поиск и вывод на экран существующих заявок по имени (name)
+     * Класс реализует поиск и вывод на экран существующих заявок по имени (name)
      */
     public class FindItemByName implements UserAction {
 
@@ -243,16 +243,18 @@ public class MenuTracker {
     }
 
     /**
-     * Метод реализует возможность выхода из программы не выполняя другие пугкты меню
+     * Класс реализует возможность выхода из программы не выполняя другие пугкты меню
      */
     public class Exit implements UserAction {
 
         private int key;
         private String info;
+        private StartUI ui;
 
-        public Exit(int key, String info) {
+        public Exit(int key, String info, StartUI ui) {
             this.key = key;
             this.info = info;
+            this.ui = ui;
         }
 
         @Override
