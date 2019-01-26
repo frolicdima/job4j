@@ -276,7 +276,7 @@ public class MenuTracker {
     /**
      * Метод заполняет массив.
      */
-    public void fillActions(StartUI ui) {
+    public List<Integer> fillActions(StartUI ui) {
         this.actions.add(new AddItem(0, "Add new Item"));
         this.actions.add(new ShowItems(1, "Show all items"));
         this.actions.add(new EditItem(2, "Edit item"));
@@ -284,6 +284,11 @@ public class MenuTracker {
         this.actions.add(new FindItemById(4, "Find item by Id"));
         this.actions.add(new FindItemByName(5, "Find items by name"));
         this.actions.add(new Exit(6, "Exit Program", ui));
+        final List<Integer> keys = new ArrayList<>();
+        for (UserAction action : actions) {
+            keys.add(action.key());
+        }
+        return keys;
     }
 
     /**
